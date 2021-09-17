@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en_SG">
+<head>
+    <title>Guess the Card Online</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        div{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id = "nameDiv">
+    Username: <input id ="username" type = "text">
+    <button id= "playButton">Play</button>
+</div>
+<div id = "canvasContainer" style = "display:none;">
+    <h1>Guess the Card Online</h1>
+    <canvas id="game" width="600" height="400" style="background: black;"> </canvas>
+<div>
+<button id = "readyButton">Ready</button>
+<form id = "playForm" style= "display: none;">
+    <select id = "guessType">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="shuff">Shuff</option>
+        <option value="call">Call</option>
+        <option value="fly">Fly</option>
+    </select>
+    <select id ="guessColour">
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+        <option value="yellow">Yellow</option>
+    </select>
+    <button id = "guessButton">Guess</button>
+    <br>  
+    <button id = "shuffButton">Shuff</button>
+    <br>
+    First:
+    <select id = "firstType">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="shuff">Shuff</option>
+        <option value="call">Call</option>
+        <option value="fly">Fly</option>
+        </select>
+    <select id ="firstColour">
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+        <option value="yellow">Yellow</option>
+    </select>
+    Second:
+    <select id = "secondType">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="shuff">Shuff</option>
+        <option value="call">Call</option>
+        <option value="fly">Fly</option>
+    </select>
+    <select id ="secondColour">
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+        <option value="yellow">Yellow</option>
+    </select>
+    <button id = "callButton">Call</button>
+    <br>
+    Cards in order(first to last):    
+    <select id ="firstFly"> 
+    <option value="0">1</option>
+    <option value = "1">2</option>
+    <option value = "2">3</option>
+    <option value = "3">4</option>
+    <option value = "4">5</option>
+    </select>
+    <select id ="secondFly">
+    <option value="0">1</option>
+    <option value = "1">2</option>
+    <option value = "2">3</option>
+    <option value = "3">4</option>
+    <option value = "4">5</option>
+    </select>
+    <select id ="thirdFly">
+    <option value="0">1</option>
+    <option value = "1">2</option>
+    <option value = "2">3</option>
+    <option value = "3">4</option>
+    <option value = "4">5</option>
+    </select>
+    <select id ="fourthFly">
+    <option value="0">1</option>
+    <option value = "1">2</option>
+    <option value = "2">3</option>
+    <option value = "3">4</option>
+    <option value = "4">5</option>
+    </select>
+    <select id ="fifthFly">
+    <option value="0">1</option>
+    <option value = "1">2</option>
+    <option value = "2">3</option>
+    <option value = "3">4</option>
+    <option value = "4">5</option>
+    </select>
+    <button id = "flyButton">Fly</button>
+</form>
+</div>
+<div id = "chatText" style="width:1000px;height:400px;overflow-y:scroll;background-color: white;margin: auto;border: 1px solid;">
+    <div style="text-align:center;">Hello! Welcome to Guess the Card Online!</div>
+</div>
+<form id = "chatForm">
+        <input id="chatInput" type= "text" style="width:1000px;">   
+    </form>   
+</div>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+<script>
+var socket = io(); 
+
+var canvas = document.getElementById("game");
+var game = canvas.getContext('2d');
+var chatText = document.getElementById("chatText");
+var chatInput = document.getElementById("chatInput");
+var chatForm = document.getElementById("chatForm");
+var shuffButton = document.getElementById("shuffButton");
+var guessButton = document.getElementById("guessButton");
+var callButton = document.getElementById("callButton");
+var flyButton = document.getElementById("flyButton");
+var guessType = document.getElementById("guessType");
+var guessColour = document.getElementById("guessColour");
+var firstType = document.getElementById("firstType");
+var secondType = document.getElementById("secondType");
+var firstColour = document.getElementById("firstColour");
+var secondColour = document.getElementById("secondColour");
+var nameDiv = document.getElementById("nameDiv");
+var playButton = document.getElementById("playButton");
+var username = document.getElementById("username");
+var flyOne = document.getElementById("firstFly");
+var flyTwo = document.getElementById("secondFly");
+var flyThree= document.getElementById("thirdFly");
+var flyFour = document.getElementById("fourthFly");
+var flyFive = document.getElementById("fifthFly");
+var readyButton = document.getElementById("readyButton");
+var playForm = document.getElementById("playForm");
+
+//Signing in
+playButton.onclick = function(e){
+    socket.emit('signIn', {username: username.value});
+} 
+
+socket.on('signInResponse',function(data){
+    if(data.success){
+        nameDiv.style.display = 'none';
+        canvasContainer.style.display = 'inline-block';
+    }
+    else{
+        alert("Username Already Taken");
+    }
+})
+
+//readying up
+readyButton.onclick = function(e){
+    e.preventDefault;
+    socket.emit('toggleReady',{});
+}
+
+//game start
+socket.on('gameStart', function(){
+    readyButton.style.display = 'none';
+    playForm.style.display = 'inline-block';
+})
+
+//Chat
+chatForm.onsubmit = function(e){
+    e.preventDefault();
+    socket.emit("sendChatMsg",chatInput.value);
+    chatInput.value = ' ';
+    return false;
+}
+ 
+socket.on('addToChat',function(data){
+    chatText.innerHTML += '<div>' + data + '</div>';
+});
+
+//guess
+guessButton.onclick = function(e){
+    e.preventDefault;
+    socket.emit("guess",{
+        type:guessType.value,
+        colour:guessColour.value
+    });
+    return false;
+}
+
+shuffButton.onclick = function(e){
+    e.preventDefault;
+    socket.emit('shuff',{});
+    return false;
+}
+
+flyButton.onclick = function(e){
+    e.preventDefault;
+    socket.emit('fly', {
+        one:flyOne.value,
+        two:flyTwo.value,
+        three:flyThree.value,
+        four:flyFour.value,
+        five:flyFive.value
+    })
+    return false;
+}
+
+callButton.onclick = function(e){
+    e.preventDefault;
+    socket.emit('call',{
+        oneType: firstType.value,
+        oneColour: firstColour.value,
+        twoType: secondType.value,
+        twoColour: secondColour.value
+    });
+    return false;
+}
+
+</script>
+</body>
+</html>

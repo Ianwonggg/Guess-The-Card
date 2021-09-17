@@ -1,0 +1,22 @@
+{
+  "name": "guessthecard2",
+  "version": "1.0.0",
+  "description": "why",
+  "main": "index.js",
+  "scripts": {
+    "test": "life"
+  },
+  "repository": {
+    "type": "git",
+    "url": "none"
+  },
+  "keywords": [
+    "return"
+  ],
+  "author": "return",
+  "license": "Unlicense",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}

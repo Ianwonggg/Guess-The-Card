@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en_SG">
+<head>
+<title>Guess the Card Online</title>   
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+    body {
+        background-color: ivory;
+        text-align: center;
+    }
+    #game{
+        border: 1px solid;
+    }
+</style>
+</head>
+<body>
+    <h1>Guess the Card Online</h1>
+    <form>
+    Name:  <input type = "text" placeholder="Input Name" pattern="[A-Za-z]{1,9}">
+    <button id = "nameButton">Submit Name</button>
+    </form>
+<div id = "canvasContainer">
+    <canvas id="game" width="600" height="400" style="background: black;"> </canvas>
+</div>
+<div>
+<form>
+    <select id = "guessType">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="shuff">Shuff</option>
+        <option value="call">Call</option>
+        <option value="fly">Fly</option>
+    </select>
+    <select id ="guessColour">
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+        <option value="yellow">Yellow</option>
+    </select>
+    <button id = "guessButton">Guess</button>
+    <br>  
+    <button id = "shuffButton">Shuff</button>
+    <br>
+    First:
+    <select id = "firstType">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="shuff">Shuff</option>
+        <option value="call">Call</option>
+        <option value="fly">Fly</option>
+        </select>
+    <select id ="firstColour">
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+        <option value="yellow">Yellow</option>
+    </select>
+    Second:
+    <select id = "secondType">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="shuff">Shuff</option>
+        <option value="call">Call</option>
+        <option value="fly">Fly</option>
+    </select>
+    <select id ="secondColour">
+        <option value="red">Red</option>
+        <option value="blue">Blue</option>
+        <option value="green">Green</option>
+        <option value="yellow">Yellow</option>
+    </select>
+    <button id = "callButton">Call</button>
+    <br>
+    Cards in order(first to last):    
+    <select id ="firstFly"> 
+    <option value="0">1</option>
+    <option value = "1">2</option>
+    <option value = "2">3</option>
+    <option value = "3">4</option>
+    <option value = "4">5</option>
+    </select>
+    <select id ="secondFly">
+    <option value="0">1</option>
+    <option value = "1">2</option>
+    <option value = "2">3</option>
+    <option value = "3">4</option>
+    <option value = "4">5</option>
+    </select>
+    <select id ="thirdFly">
+    <option value="0">1</option>
+    <option value = "1">2</option>
+    <option value = "2">3</option>
+    <option value = "3">4</option>
+    <option value = "4">5</option>
+    </select>
+    <select id ="fourthFly">
+    <option value="0">1</option>
+    <option value = "1">2</option>
+    <option value = "2">3</option>
+    <option value = "3">4</option>
+    <option value = "4">5</option>
+    </select>
+    <select id ="fifthFly">
+    <option value="0">1</option>
+    <option value = "1">2</option>
+    <option value = "2">3</option>
+    <option value = "3">4</option>
+    <option value = "4">5</option>
+    </select>
+    <button id = "flyButton">Fly</button>
+</form>
+</div>
+<div id = "chatText" style="width:1000px;height:400px;overflow-y:scroll;background-color: white;margin: auto;border: 1px solid;">
+    <div style="text-align:center;">Hello! Welcome to Guess the Card Online!</div>
+</div>
+<form id = "chatForm">
+        <input id="chatInput" type= "text" style="width:1000px;">   
+    </form> 
+</body>
+<script src = "Libraries/p5.js"></script>
+<script src="Functions.js"></script>
+<script src = "GuessTheCard.js"></script>
+
+</html>
