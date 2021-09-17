@@ -1,0 +1,44 @@
+Card types:
+0: 0 red
+1: 1 red
+2: 2 red
+3: 3 red
+4: 4 red
+5: 5 red
+6: 6 red
+7: 7 red
+8: 8 red
+9: 9 red
+10: 0 blue
+11: 1 blue
+12: 2 blue
+13: 3 blue
+14: 4 blue
+15: 5 blue
+16: 6 blue
+17: 7 blue
+18: 8 blue
+19: 9 blue
+20: 0 green
+21: 1 green
+22: 2 green
+23: 3 green
+24: 4 green
+25: 5 green
+26: 6 green
+27: 7 green
+28: 8 green
+29: 9 green
+30 :0 yellow
+31 :1 yellow
+32 :2 yellow
+33 :3 yellow
+34 :4 yellow
+35 :5 yellow
+36 :6 yellow
+37 :7 yellow
+38 :8 yellow
+39 :9 yellow
+40: shuff
+41: fly
+42: call
